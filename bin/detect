@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # the pack expects at least one .jar file in the build/ folder of the build
 if [ -d $1/build/ ] && [ -f $1/build/*.jar ] ; then

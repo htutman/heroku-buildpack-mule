@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -e
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+ENV_DIR=$3
+
+MULE_VERSION='4.3.0-ea2'
+
+if [ ! -d $CACHE_DIR/vendor/mule/mule-standalone-$MULE_VERSION ] ; then
+  # intall mule into cache
+  mkdir -p $CACHE_DIR/vendor/mule
+  cd $CACHE_DIR/vendor/mule
+  curl --retry 3 --location https://repository-master.mulesoft.org/nexus/service/local/repositories/releases/content/org/mule/distributions/mule-standalone/$MULE_VERSION/mule-standalone-$MULE_VERSION.tar.gz | tar xzm
+fi
+
+# copy Mule 4 installation from the cache to the build .mule folder
+cp -r $CACHE_DIR/vendor/mule/mule-standalone-$MULE_VERSION $BUILD_DIR/.mule
+
+export MULE_HOME=$BUILD_DIR/.mule
+
+# copy all artefacts to the $MULE_HOME/apps folder
+cp $BUILD_DIR/build/*.jar $MULE_HOME/apps

@@ -5,6 +5,6 @@ if [ -d $1/build/ ] && [ -f $1/build/*.jar ] ; then
   echo "Mule 4 project detected"
   exit 0
 else
-  echo "This does not seem to be a Mule 4 project, make sure at least one jar file is placed inside the ./build/ directory"
+  (>&2 echo "This does not seem to be a Mule 4 project, make sure at least one jar file is placed inside the ./build/ directory")
   exit 1
 fi

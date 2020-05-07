@@ -21,4 +21,4 @@ cp -r $CACHE_DIR/vendor/mule/mule-standalone-$MULE_VERSION $BUILD_DIR/.mule
 export MULE_HOME=$BUILD_DIR/.mule
 
 # copy all artefacts to the $MULE_HOME/apps folder
-cp $BUILD_DIR/build/*.jar $MULE_HOME/apps
+cp $BUILD_DIR/*.jar $MULE_HOME/apps

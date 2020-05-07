@@ -2,16 +2,16 @@
 
 BUILD_DIR=$1
 
-echo "Build dir: ${BUILD_DIR}"
-find $BUILD_DIR/build
+(>&2 echo "Build dir: ${BUILD_DIR}")
+(>&2 find $BUILD_DIR)
 
 # the pack expects at least one .jar file in the build/ folder of the build
 
-count=`ls -1 ${BUILD_DIR}/build/*.jar 2>/dev/null | wc -l`
+count=`ls -1 ${BUILD_DIR}/*.jar 2>/dev/null | wc -l`
 if [ $count != 0 ]; then
   echo "Mule 4 project detected"
   exit 0
 else
-  (>&2 echo "This does not seem to be a Mule 4 project, make sure at least one jar file is placed inside the ./build/ directory")
+  (>&2 echo "This does not seem to be a Mule 4 project, make sure at least one jar file is placed inside the root directory")
   exit 1
 fi

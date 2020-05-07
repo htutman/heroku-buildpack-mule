@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 
+BUILD_DIR=$1
+
+echo "Build dir: ${BUILD_DIR}"
+find $BUILD_DIR/build
+
 # the pack expects at least one .jar file in the build/ folder of the build
-if [ -d $1/build/ ] && [ -f $1/build/*.jar ] ; then
+
+count=`ls -1 ${BUILD_DIR}/build/*.jar 2>/dev/null | wc -l`
+if [ $count != 0 ]; then
   echo "Mule 4 project detected"
   exit 0
 else

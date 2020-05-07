@@ -2,9 +2,6 @@
 
 BUILD_DIR=$1
 
-(>&2 echo "Build dir: ${BUILD_DIR}")
-(>&2 find $BUILD_DIR)
-
 # the pack expects at least one .jar file in the build/ folder of the build
 
 count=`ls -1 ${BUILD_DIR}/*.jar 2>/dev/null | wc -l`

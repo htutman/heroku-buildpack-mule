@@ -3,5 +3,5 @@
 cat << EOF
 ---
 default_process_types:
-  web: ./.mule/bin/mule
+  web: java -Dmule.home=/app/.mule -Dmule.base=/app/.mule -Djava.net.preferIPv4Stack=TRUE -Dmvel2.disable.jit=TRUE -Dorg.glassfish.grizzly.nio.transport.TCPNIOTransport.max-receive-buffer-size=1048576 -Dorg.glassfish.grizzly.nio.transport.TCPNIOTransport.max-send-buffer-size=1048576 -XX:MaxMetaspaceSize=256m -XX:MetaspaceSize=128m -XX:+HeapDumpOnOutOfMemoryError -XX:+AlwaysPreTouch -XX:NewRatio=1 -XX:MaxTenuringThreshold=8 -Dorg.quartz.scheduler.skipUpdateCheck=true -Dmule.metadata.cache.entryTtl.minutes=10 -Dmule.metadata.cache.expirationInterval.millis=5000 -Djava.locale.providers=COMPAT,CLDR,SPI -Dlog4j2.disable.jmx=true -Xms1024m -Xmx1024m -Djava.library.path=%LD_LIBRARY_PATH%:/app/.mule/lib/boot -classpath %MULE_LIB%:/app/.mule/conf:/app/.mule/lib/boot/*:/app/.mule/lib/mule/*:/app/.mule/lib/opt/* org.mule.runtime.module.launcher.MuleContainer
 EOF
